@@ -6,6 +6,7 @@ class Message(models.Model):
     date_sent = models.DateTimeField(verbose_name='Дата отправки')
     date_received = models.DateTimeField(verbose_name='Дата получения')
     message_text = models.TextField(verbose_name='Описание или текст сообщения')
+    source = models.CharField(max_length=50, default='unknown', verbose_name='Источник почты')
 
     def __str__(self):
         return self.subject
