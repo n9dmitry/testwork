@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список сообщений</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Список сообщений</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Тема</th>
+        <th>Дата отправки</th>
+        <th>Дата получения</th>
+        <th>Описание</th>
+        <th>Прикрепленные файлы</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for message in messages %}
+    <tr>
+        <td>{{ message.subject }}</td>
+        <td>{{ message.date_sent }}</td>
+        <td>{{ message.date_received }}</td>
+        <td>{{ message.message_text }}</td>
+        <td>
+            {% if message.attachments.all %}
+            {% for attachment in message.attachments.all %}
+            {{ attachment.file.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            {% else %}
+            Нет приложений
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">Нет сообщений для отображения</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

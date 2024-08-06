@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.db import models
 
 class Message(models.Model):
     subject = models.CharField(max_length=100, verbose_name='Тема сообщения')
@@ -10,6 +9,7 @@ class Message(models.Model):
 
     def __str__(self):
         return self.subject
+
 
 class Attachment(models.Model):
     message = models.ForeignKey(Message, related_name='attachments', on_delete=models.CASCADE)
