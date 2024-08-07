@@ -35,7 +35,7 @@ def fetch_and_save_messages():
         status, messages = mail.search(None, 'ALL')
         mail_ids = messages[0].split()
 
-        logger.info(f"Found {len(mail_ids)} emails.")  # Логирование вместо print
+        logger.info(f"Found {len(mail_ids)} emails.")
 
         for mail_id in mail_ids:
             status, msg_data = mail.fetch(mail_id, '(RFC822)')
